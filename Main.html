@@ -50,7 +50,7 @@ E:\gabe\projects\testWebAir\bin\Main.html
 					<li><a href="#">test</a></li>
 				</ul>
 		</div>
-		<br/>
+		<br>
 		<a href="#popupParis" data-rel="popup" data-position-to="window" data-transition="fade"><img class="popphoto" src="img/paris.jpg" alt="Paris, France" style="width:30%"></a>
 		<a href="#popupSydney" data-rel="popup" data-position-to="window" data-transition="fade"><img class="popphoto" src="img/sydney.jpg" alt="Sydney, Australia" style="width:30%"></a>
 		<a href="#popupNYC" data-rel="popup" data-position-to="window" data-transition="fade"><img class="popphoto" src="img/newyork.jpg" alt="New York, USA" style="width:30%"></a>
@@ -63,6 +63,87 @@ E:\gabe\projects\testWebAir\bin\Main.html
 		<div data-role="popup" id="popupNYC" data-overlay-theme="b" data-theme="b" data-corners="false">
 			<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img class="popphoto" src="img/newyork.jpg" style="max-height:512px;" alt="New York, USA">
 		</div>
+		<br>
+		<a href="#popupLogin" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" data-transition="pop">Sign in</a>
+		<div data-role="popup" id="popupLogin" data-theme="a" class="ui-corner-all">
+			<form>
+				<div style="padding:10px 20px;">
+					<h3>Please sign in</h3>
+					<label for="un" class="ui-hidden-accessible">Username:</label>
+					<input name="user" id="un" value="" placeholder="username" data-theme="a" type="text">
+					<label for="pw" class="ui-hidden-accessible">Password:</label>
+					<input name="pass" id="pw" value="" placeholder="password" data-theme="a" type="password">
+					<button type="submit" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Sign in</button>
+				</div>
+			</form>
+		</div>
+		
+		<form>
+			<ul data-role="listview" data-inset="true">
+				<li class="ui-field-contain">
+					<label for="name2">Text Input:</label>
+					<input name="name2" id="name2" value="" data-clear-btn="true" type="text">
+				</li>
+				<li class="ui-field-contain">
+					<label for="textarea2">Textarea:</label>
+				<textarea cols="40" rows="8" name="textarea2" id="textarea2"></textarea>
+				</li>
+				<li class="ui-field-contain">
+					<label for="flip2">Flip switch:</label>
+					<select name="flip2" id="flip2" data-role="slider">
+						<option value="off">Off</option>
+						<option value="on">On</option>
+					</select>
+				</li>
+				<li class="ui-field-contain">
+					<label for="slider2">Slider:</label>
+					<input name="slider2" id="slider2" value="0" min="0" max="100" data-highlight="true" type="range">
+				</li>
+				<li class="ui-field-contain">
+					<label for="select-choice-1" class="select">Choose shipping method:</label>
+					<select name="select-choice-1" id="select-choice-1">
+						<option value="standard">Standard: 7 day</option>
+						<option value="rush">Rush: 3 days</option>
+						<option value="express">Express: next day</option>
+						<option value="overnight">Overnight</option>
+					</select>
+				</li>
+				<li class="ui-body ui-body-b">
+					<fieldset class="ui-grid-a">
+							<div class="ui-block-a"><button type="submit" class="ui-btn ui-corner-all ui-btn-a">Cancel</button></div>
+							<div class="ui-block-b"><button type="submit" class="ui-btn ui-corner-all ui-btn-a">Submit</button></div>
+					</fieldset>
+				</li>
+			</ul>
+		</form>
+		
+		<div data-role="collapsible" data-theme="b" data-content-theme="b">
+		<h2>Choose a car model...</h2>
+			<ul data-role="listview" data-filter="true">
+				<li><a href="index.html">Acura</a></li>
+				<li><a href="index.html">Audi</a></li>
+				<li><a href="index.html">BMW</a></li>
+				<li><a href="index.html">Cadillac</a></li>
+				<li><a href="index.html">Chrysler</a></li>
+				<li><a href="index.html">Dodge</a></li>
+				<li><a href="index.html">Ferrari</a></li>
+				<li><a href="index.html">Ford</a></li>
+				<li><a href="index.html">GMC</a></li>
+				<li><a href="index.html">Honda</a></li>
+			</ul>
+		</div>
+		
+		<form>
+			<fieldset data-role="controlgroup">
+				<legend>Swatch B:</legend>
+				<input name="checkbox-t-2a" id="checkbox-t-2a" data-theme="b" type="checkbox">
+				<label for="checkbox-t-2a">One</label>
+				<input name="checkbox-t-2b" id="checkbox-t-2b" data-theme="b" type="checkbox">
+				<label for="checkbox-t-2b">Two</label>
+				<input name="checkbox-t-2c" id="checkbox-t-2c" data-theme="b" type="checkbox">
+				<label for="checkbox-t-2c">Three</label>
+			</fieldset>
+		</form>
 		
 		<div data-role="footer">
 			<h4>Page Footer</h4>
