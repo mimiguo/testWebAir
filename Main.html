@@ -4,9 +4,33 @@
 	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="jquery.mobile-1.4.2/jquery.mobile-1.4.2.min.css" />
 	<script src="angular.min.js"></script>
+	<script src="todo/todo.js"></script>
+	<link rel="stylesheet" href="todo.css"/>
 	<title>Test</title>
 </head>
 <body>
-	<p>{{'yet'+'!'}}</p>
+	<p>test test {{'yet'+'!'}}</p>
+	<div>
+		<label>Name:</label>
+		<input type="text" ng-model="yourName" placeholder="enter here"/>
+		<hr/>
+		<h1>hello {{yourName}} !</h1>
+	</div>
+	<h2>Todo</h2>
+	<div ng-controller="todoCtrl">
+		<span> {{remaining()}} of {{todos.length}} remaining </span>
+		 [ <a href="" ng-click="archive()">archive</a> ]
+		<ul class="unstyled">
+			<li ng-repeat="todo in todos">
+				<input type="checkbox" ng-model="todo.done">
+				<span class="done-{{todo.done}}">{{todo.text}}</span>
+			</li>
+		</ul>
+		<form ng-submit="addTodo()">
+			<input type="text" ng-model="todoText" size="30"
+				placeholder="add new todo here">
+			<input class="btn-primary" type="submit" value="add">
+		</form>
+	</div>
 </body>
 </html>
