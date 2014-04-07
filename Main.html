@@ -11,25 +11,44 @@ E:\gabe\projects\testWebAir\bin\Main.html
 </head>
 <body>
 	<div data-role="page">
-		<div data-role="header">
+		<div data-role="header" style="overflow:hidden;">
 			<h1>Page Title</h1>
+			<a href="#" data-icon="gear" class="ui-btn-right">Options</a>
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#" data-icon="grid">One</a></li>
+					<li><a href="#" data-icon="star">Two</a></li>
+					<li><a href="#" data-icon="home">Three</a></li>
+				</ul>
+			</div>
 		</div>
 		<div role="main" class="ui-content">
 			<p>Page content goes here.</p>
 			<div data-role="navbar">
-    <ul>
-        <li><a href="#" class="ui-btn-active">One</a></li>
-        <li><a href="#">Two</a></li>
-        <li><a href="#">Three</a></li>
-        <li><a href="#">Four</a></li>
-        <li><a href="#">Five</a></li>
-        <li><a href="#">Six</a></li>
-        <li><a href="#">Seven</a></li>
-        <li><a href="#">Eight</a></li>
-        <li><a href="#">Nine</a></li>
-        <li><a href="#">Ten</a></li>
-    </ul>
-</div>
+				<ul>
+					<li><a href="#" class="ui-btn-active">One</a></li>
+					<li><a href="#">Two</a></li>
+					<li><a href="#">Three</a></li>
+					<li><a href="#">Four</a></li>
+					<li><a href="#">Five</a></li>
+					<li><a href="#">Six</a></li>
+					<li><a href="#">Seven</a></li>
+					<li><a href="#">Eight</a></li>
+					<li><a href="#">Nine</a></li>
+					<li><a href="#">Ten</a></li>
+				</ul>
+			</div>
+		</div>
+		<a href="#popupMenu" data-rel="popup" data-transition="slideup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-gear ui-btn-icon-left ui-btn-a">Actions...</a>
+		<div data-role="popup" id="popupMenu" data-theme="b">
+				<ul data-role="listview" data-inset="true" style="min-width:210px;">
+					<li data-role="list-divider">Choose an action</li>
+					<li><a href="#">View details</a></li>
+					<li><a href="#">Edit</a></li>
+					<li><a href="#">Disable</a></li>
+					<li><a href="#">Delete</a></li>
+					<li><a href="#">test</a></li>
+				</ul>
 		</div>
 		<div data-role="footer">
 			<h4>Page Footer</h4>
