@@ -6,23 +6,15 @@
 		<script type="text/javascript" src="jquery-1.9.1.min.js"></script> 
         <script> 
             $( document ).ready(function() {
-				// Your code here.
-				air.trace("Hello World");
 				getDesktopFileList();
-				});
-				
+			});
 				
 			function getDesktopFileList() 
             { 
-				
-				//$("#log").append(air + "<br/>");
-				
                 var files = air.File.desktopDirectory.getDirectoryListing();
-                //for (i = 0; i < files.length; i++) 
-				air.trace("files:", files);
+				//air.trace("files:", files);
                 for (i = 0; i < files.length ; i++) 
                 { 
-                    //log.innerHTML += files[i].name + "<br/>"; 
 					$("#log").append(files[i].name + "<br/>"); 
                 } 
             }	
