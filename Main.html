@@ -1,26 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="jquery.mobile-1.4.2/jquery.mobile-1.4.2.min.css" />
-	<script src="jquery-1.9.1.min.js"></script>
-	<script src="jquery.mobile-1.4.2/jquery.mobile-1.4.2.min.js"></script>
-	<title>Test</title>
-</head>
-<body contenteditable="true">
-		<div data-role="page">
-		<div data-role="header">
-			<h1>Page Title</h1>
-		</div>
-		<div role="main" class="ui-content">
-			<p>Page content goes here.</p>
-			<h1>test</h1>
-			<p contenteditable="false">asdfasdfasdfasdfa</p>
-			<p>abbb</p>
-		</div>
-		<div data-role="footer">
-			<h4>Page Footer</h4>
-		</div>
-	</div>
-</body>
+<html> 
+    <head> 
+        <title>Sample application</title> 
+        <script type="text/javascript" src="AIRAliases.js"></script>
+		<script type="text/javascript" src="jquery-1.9.1.min.js"></script> 
+        <script> 
+            $( document ).ready(function() {
+				// Your code here.
+				air.trace("Hello World");
+				getDesktopFileList();
+				});
+				
+				
+			function getDesktopFileList() 
+            { 
+				
+				//$("#log").append(air + "<br/>");
+				
+                var files = air.File.desktopDirectory.getDirectoryListing();
+                //for (i = 0; i < files.length; i++) 
+				air.trace("files:", files);
+                for (i = 0; i < files.length ; i++) 
+                { 
+                    //log.innerHTML += files[i].name + "<br/>"; 
+					$("#log").append(files[i].name + "<br/>"); 
+                } 
+            }	
+       </script> 
+    </head>     
+    <body style="padding: 10px"> 
+        <h2>Files and folders on the desktop:</h2>             
+        <div id="log" style="width: 450px; height: 200px; overflow-y: scroll;"></div> 
+    </body> 
 </html>
