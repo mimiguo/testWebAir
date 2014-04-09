@@ -29,16 +29,26 @@
              var range = selection.getRangeAt(0); 
              range.insertNode(insertion); 
             event.preventDefault(); 
-        } 
+        }
+		/*
+		function dragStartHandler(event){         
+			event.dataTransfer.effectAllowed = "copyLink"; 
+			 
+			var dragImage = document.getElementById("imageOfGeorge"); 
+			var dragFile = new air.File(dragImage.src); 
+			event.dataTransfer.setData("text/plain","A picture of George"); 
+			event.dataTransfer.setData("image/x-vnd.adobe.air.bitmap", dragImage); 
+			event.dataTransfer.setData("application/x-vnd.adobe.air.file-list", new Array(dragFile)); 
+		}*/
+		
+		function doDrop(evt) {
+			droppedText=event.dataTransfer.getData("text/plain");
+		
+		}
     </script> 
 	</head> 
-	<body onCopy="onCopy(event)" 
-		 onPaste="onPaste(event)" 
-		 onCut="onCut(event)"> 
-		<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium  
-		doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore  
-		veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam 
-		voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur  
-		magni dolores eos qui ratione voluptatem sequi nesciunt.</p> 
+	<body> 
+		<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium.</p>
+		<img id="imageOfGeorge" src="assets/cat_o.jpg" />
 	</body> 
 </html>
