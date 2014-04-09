@@ -1,54 +1,94 @@
-<!DOCTYPE html>
-<html> 
-    <head> 
-    <title>Copy and Paste</title>
-	<script src="AIRAliases.js"></script>
-    <script language="javascript" type="text/javascript"> 
-        function onCopy(event){ 
-            var selection = window.getSelection(); 
-			air.trace('selection:', selection);
-            event.clipboardData.setData("text/html","<i>" + selection + "</i>"); 
-            event.preventDefault(); 
-        } 
- 
-        function onCut(event){ 
-             var selection = window.getSelection(); 
-             event.clipboardData.setData("text/html","<i>" + selection + "</i>"); 
-             var range = selection.getRangeAt(0); 
-			 air.trace('range:', range);
-			 
-             range.extractContents(); 
-             
-            event.preventDefault(); 
-        } 
- 
-        function onPaste(event){ 
-            var insertion = document.createElement("b"); 
-            insertion.innerHTML = event.clipboardData.getData("text/html"); 
-             var selection = window.getSelection(); 
-             var range = selection.getRangeAt(0); 
-             range.insertNode(insertion); 
-            event.preventDefault(); 
-        }
-		/*
-		function dragStartHandler(event){         
-			event.dataTransfer.effectAllowed = "copyLink"; 
-			 
-			var dragImage = document.getElementById("imageOfGeorge"); 
-			var dragFile = new air.File(dragImage.src); 
-			event.dataTransfer.setData("text/plain","A picture of George"); 
-			event.dataTransfer.setData("image/x-vnd.adobe.air.bitmap", dragImage); 
-			event.dataTransfer.setData("application/x-vnd.adobe.air.file-list", new Array(dragFile)); 
-		}*/
+<html>
+<head> 
+<title>Drag-and-drop</title> 
+<script language="javascript" type="text/javascript" src="AIRAliases.js"></script> 
+<script language="javascript"> 
+    function init(){ 
+	
 		
-		function doDrop(evt) {
-			droppedText=event.dataTransfer.getData("text/plain");
-		
-		}
-    </script> 
-	</head> 
-	<body> 
-		<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium.</p>
-		<img id="imageOfGeorge" src="assets/cat_o.jpg" />
-	</body> 
+		window.htmlLoader.addEventListener("nativeDragDrop",function(event){ 
+			var filelist = event.clipboard.getData(air.ClipboardFormats.FILE_LIST_FORMAT); 
+			air.trace(filelist[0].url, filelist[0].icon) ; 
+		}); 
+	
+	
+        var target = document.getElementById('target'); 
+        target.addEventListener("dragenter", dragEnterOverHandler); 
+        target.addEventListener("dragover", dragEnterOverHandler); 
+        target.addEventListener("drop", dropHandler); 
+         
+        var source = document.getElementById('source'); 
+        source.addEventListener("dragstart", dragStartHandler); 
+        source.addEventListener("dragend", dragEndHandler); 
+         
+        emptyRow = document.getElementById("emptyTargetRow"); 
+    } 
+	
+    function dragStartHandler(event){         
+        event.dataTransfer.effectAllowed = "copy"; 
+    } 
+ 
+    function dragEndHandler(event){ 
+        air.trace("event.type:",event.type); 
+        air.trace('event.dataTransfer.dropEffect:' + event.dataTransfer.dropEffect); 
+    } 
+     
+	//為了讓不可編輯的內容能夠接受拖入手勢，主要步驟在於同時對 dragenter 和 dragover 事件發生時所傳送的事件物件呼叫 preventDefault() 方法。
+    function dragEnterOverHandler(event){ 
+        event.preventDefault(); 
+    }     
+ 
+    var emptyRow; 
+    function dropHandler(event){ 
+        /*
+		for(var prop in event){ 
+            air.trace(prop + " = " + event[prop]); 
+        }*/ 
+        var row = document.createElement('tr'); 
+        row.innerHTML = "<td>" + event.dataTransfer.getData("text/plain") + "</td>" + 
+            "<td>" + event.dataTransfer.getData("text/html") + "</td>" + 
+            "<td>" + event.dataTransfer.getData("text/uri-list") + "</td>" + 
+            "<td>" + event.dataTransfer.getData("application/x-vnd.adobe.air.file-list") + 
+            "</td>"; 
+ 
+        var imageCell = document.createElement('td'); 
+		air.trace("dataTransfer.types:", event.dataTransfer.types.toString());
+        if((event.dataTransfer.types.toString()).search("image/x-vnd.adobe.air.bitmap") > -1){ 
+            imageCell.appendChild(event.dataTransfer.getData("image/x-vnd.adobe.air.bitmap")); 
+        } 
+        row.appendChild(imageCell); 
+        var parent = emptyRow.parentNode; 
+        parent.insertBefore(row, emptyRow); 
+    } 
+</script> 
+</head> 
+<body onLoad="init()" style="padding:5px">  
+<div> 
+	<a href="second.html">second.html</a>
+    <h1>Source</h1> 
+       <p>Items to drag:</p> 
+    <ul id="source"> 
+         <li>Plain text.</li> 
+           <li>HTML <b>formatted</b> text.</li> 
+           <li>A <a href="http://www.adobe.com">URL.</a></li> 
+           <li><img src="assets/cat_o.jpg" alt="An image"/></li> 
+           <li style="-webkit-user-drag:none;"> 
+         Uses "-webkit-user-drag:none" style. 
+           </li> 
+           <li style="-webkit-user-select:none;"> 
+         Uses "-webkit-user-select:none" style. 
+           </li> 
+ 
+       </ul> 
+</div> 
+<div id="target" style="border-style:dashed;"> 
+    <h1 >Target</h1> 
+       <p>Drag items from the source list (or elsewhere).</p> 
+       <table id="displayTable" border="1"> 
+         <tr><th>Plain text</th><th>Html text</th><th>URL</th><th>File list</th><th>Bitmap Data</th></tr> 
+           <tr id="emptyTargetRow"><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr> 
+       </table> 
+       </div> 
+</div> 
+</body> 
 </html>
