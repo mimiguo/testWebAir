@@ -1,27 +1,44 @@
 <!DOCTYPE html>
 <html> 
     <head> 
-        <title>Sample application</title> 
-        <script type="text/javascript" src="AIRAliases.js"></script>
-		<script type="text/javascript" src="jquery-1.9.1.min.js"></script> 
-        <script> 
-            $( document ).ready(function() {
-				getDesktopFileList();
-			});
-				
-			function getDesktopFileList() 
-            { 
-                var files = air.File.desktopDirectory.getDirectoryListing();
-				//air.trace("files:", files);
-                for (i = 0; i < files.length ; i++) 
-                { 
-					$("#log").append(files[i].name + "<br/>"); 
-                } 
-            }	
-       </script> 
-    </head>     
-    <body style="padding: 10px"> 
-        <h2>Files and folders on the desktop:</h2>             
-        <div id="log" style="width: 450px; height: 200px; overflow-y: scroll;"></div> 
-    </body> 
+    <title>Copy and Paste</title>
+	<script src="AIRAliases.js"></script>
+    <script language="javascript" type="text/javascript"> 
+        function onCopy(event){ 
+            var selection = window.getSelection(); 
+			air.trace('selection:', selection);
+            event.clipboardData.setData("text/html","<i>" + selection + "</i>"); 
+            event.preventDefault(); 
+        } 
+ 
+        function onCut(event){ 
+             var selection = window.getSelection(); 
+             event.clipboardData.setData("text/html","<i>" + selection + "</i>"); 
+             var range = selection.getRangeAt(0); 
+			 air.trace('range:', range);
+			 
+             range.extractContents(); 
+             
+            event.preventDefault(); 
+        } 
+ 
+        function onPaste(event){ 
+            var insertion = document.createElement("b"); 
+            insertion.innerHTML = event.clipboardData.getData("text/html"); 
+             var selection = window.getSelection(); 
+             var range = selection.getRangeAt(0); 
+             range.insertNode(insertion); 
+            event.preventDefault(); 
+        } 
+    </script> 
+	</head> 
+	<body onCopy="onCopy(event)" 
+		 onPaste="onPaste(event)" 
+		 onCut="onCut(event)"> 
+		<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium  
+		doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore  
+		veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam 
+		voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur  
+		magni dolores eos qui ratione voluptatem sequi nesciunt.</p> 
+	</body> 
 </html>
