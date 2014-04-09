@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
+                       xmlns:s="library://ns.adobe.com/flex/spark"
+                       xmlns:mx="library://ns.adobe.com/flex/mx" applicationComplete="init();">
+	
+	<fx:Script>
+		<![CDATA[
+		
+		import flash.html.HTMLHost;
+		import flash.html.HTMLLoader; 
+		import flash.filters.BlurFilter;
+		import flash.filters.GlowFilter;
+		import flash.net.URLRequest;
+		private function init():void
+		{
+			var html:HTMLLoader = new HTMLLoader; 
+			html.width = 800; 
+			html.height = 600; 
+			var urlReq:URLRequest = new URLRequest("http://www.adobe.com/");
+			html.load(urlReq);
+			//html.loadString("<html><body><h2>world</h2></body></html>");
+			
+			
+			var blur:BlurFilter = new BlurFilter(8); 
+			var glow:GlowFilter = new GlowFilter();
+			glow.color = 0xEA8088;
+			glow.blurX = 7;
+			
+			var filters:Array = [glow];
+			html.filters = filters; 
+			cat.filters = filters;
+			con.addChild(html);
+			
+			var angular:HTMLLoader = new HTMLLoader();
+			//angular.htmlHost = new HTMLHost();
+			angular.width = 600;
+			angular.height = 600;
+			
+			urlReq = new URLRequest("Main.html");
+			angular.load(urlReq);
+			con.addChild(angular);
+		}
+			
+		]]>
+	</fx:Script>
+	<s:SpriteVisualElement id="con" />
+	<s:Image source="assets/cat_o.jpg" id="cat"></s:Image>
+
+</s:WindowedApplication>
