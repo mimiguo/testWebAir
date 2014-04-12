@@ -1,7 +1,7 @@
 testWebAir
 ==========
 
-測試 web 技術 (jQueryMobile, AngularJs 等) run 在 air 平台上
+測試 web 技術 (html5, js, jQueryMobile, AngularJs 等) run 在 air 平台上
 
 git上只有放 FD 專案 的 bin(runtime)　而已
 其實　FD 並沒有針對 web+Air 的專案類型
